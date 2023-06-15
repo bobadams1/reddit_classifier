@@ -3,3 +3,6 @@
 
 # Ignore MacOS directory metadata file
 .DS_Store
+
+# Ignore API Keys
+credentials.py
