@@ -5,7 +5,7 @@ Robert Adams for General Assembly - Data Science Immersive - Summer 2023
 
 ---
 ## Problem Statement
-The world of dating has become increasingly complicated with the proliferation of dating apps, recent in-person meeting restrictions, and various societal pressures.  In addition to services used to find 'matches', forums (including many on Reddit) have grown to facilitate discussion, support and advice.  Two popular forums are [r/dating](https://reddit.com/r/dating) and [r/datingoverthirty](https://reddit.com/r/datingoverthirty).  This project analyzes the text (post titles, selftext, and the top-upvoted comment) from 1000 recent posts from each community to predict in which subreddit new conversations are most likely to take place.
+The world of dating has become increasingly complicated with the proliferation of dating apps, recent in-person meeting restrictions, and various societal pressures.  In addition to services used to find 'matches', forums (including many on Reddit) have grown to facilitate discussion, support and advice.  Two popular forums are [r/dating](https://reddit.com/r/dating) and [r/datingoverthirty](https://reddit.com/r/datingoverthirty).  This project analyzes the text (post titles, selftext, and the top-upvoted comment) from 1000 recent posts from each community to predict in which subreddit new conversations are most likely to take place.  Models will be optimized to maximize accuracy - posting in the wrong subreddit carries little risk, but posting in the correct one may help bring the right answer.
 
 > Are the conversations happening on r/dating and r/datingoverthirty materially different in content - and can the designation be predicted?
 
@@ -139,7 +139,20 @@ Prior to fitting and evaluating estimators, the text data must be pre-processed.
 |Estimation|Voting Classifier (Ensembling)|Leverages the combined predicted outputs across designated models to decide upon a prediction by majority rule|Models leveraged, hard (majority rule) vs. soft voting (probablistic)|
 
 ### Model Performance
-Fit models are evaluated centrally using function which calculates key performance metrics, a Confusion Matrix, and a Classification Report.
+Fit models are evaluated centrally using function which calculates key performance metrics, a Confusion Matrix, and a Classification Report.  Model performances are also captured in a best-value method in a dataframe during evaluation to make cross-model predictions easier.
+
+|model_name |train_accuracy|test_accuracy|
+|---|---|---|
+|Model_6_SVM_TFIDF|1.000000|0.845842    
+|Model_7_VotingClassifier|0.989175|0.821501   
+|Model_4_Random_Forrest|0.981732|0.815416   
+|Model_2_RsCV_Multi_CVEC|1.000000|0.803245   
+|Model_1_RSCV_Multi_Tfidf|1.000000|0.799189   
+|Model_4_Random_Forrest|0.978349|0.797160   
+|Model_5_AdaBoostClassifier|0.849120|0.778905   
+|Model_3_Bagged_Trees|0.949932|0.764706   
+
+---
 #### Model 1
 A Randomized Cross Validation Search evaluating 
 * Lemmatized text
@@ -372,5 +385,7 @@ Not Applicable
 ![Model_7_VotingClassifier_Confusion_Matrix](./images/Model_7_VotingClassifier_Confusion_Matrix.png)
 ---
 ## Executive Summary
+After evaluating seven different models, spanning a range of pre-processing techniques, vectorizers, and estimators, an 84.5% accuracy level is achievable when categorizing reddit conversations into dating subreddits.
 
 ## Recommendations
+While none of the models achieved a perfect prediction (best found was 84.5%), this is significantly better than the baseline of 50.91%.  Due to it's consistent performance, Support Vector Machines (RBF Kernel, low normalization), in combination with Tf-IDF Vectorization (English stop words and single words) could be further explored and optimized to predict subreddits by post conversation.  Understanding where to post your question, and the type of response you hope for is key in leveraging any forum.  This type of model could be leveraged to pre-screen posts and help those struggling with the current dating climate to find the best community for them.
