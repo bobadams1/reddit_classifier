@@ -383,6 +383,28 @@ Not Applicable
 
 
 ![Model_7_VotingClassifier_Confusion_Matrix](./images/Model_7_VotingClassifier_Confusion_Matrix.png)
+
+#### Ensembling: Poor Results
+Ensembling models, especially those which are overfit, generally produces an output with reduced bias (better performance against test data).  In this case, the ensembled model (Voting Classifier) performed worse than our best model (82.15% vs. 84.5%).  Below is a brief exploration on why this occurred.
+
+##### Misclassification Correlation
+Ideally, models would not agree on which observations they mis-classify.  In aggregate, that disagreement opens the opportunity for the majority of models (hopefully correct) to select the correct output.  In this case, we are seeing broad agreement between multi-estimator and tree-based models.
+![ModelClassification_Correlation](./images/ModelClassification_Correlation.png)
+
+##### Model Misclassifications - Missed Models by Observation
+Here a simple histogram counts the number of models which misclassified each observation. 0 indicates all of the seven models fit predicted the observation correctly; 7 indicates all models incorrectly predicted the category (subreddit).
+
+> The even distribution, especially over 4 models misclassifying the same observation, indicates that 1) the models are converging consistently - this is not ideal for VotingClassifier ensembling and 2) it is possible some of the evaluated posts are more likely to appear in the other subreddit (lostredditors).
+
+![model_misclassifications](./images/model_misclassifications.png)
+
+##### Model Misclassifications vs. Length
+I found during EDA that post lengths differ between r/dating and r/datingoverthirty.  Below is a plot of the same histogram categories (number of models misclassifying a post) with a distribution of conversation word count (including title, selftext, and top commment).
+
+> As the word count of the document increases, more models are more likely to misclassify the document as r/datingoverthirty.  In the reverse case, as the word count decreases, more models are likely to misclassify a post as having been posted in r/dating.  It is possible
+
+![PostMisclassifications_vs_Word_Count](./images/PostMisclassifications_vs_Word_Count.png)
+
 ---
 ## Executive Summary
 After evaluating seven different models, spanning a range of pre-processing techniques, vectorizers, and estimators, an 84.5% accuracy level is achievable when categorizing reddit conversations into dating subreddits.
