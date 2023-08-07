@@ -1,6 +1,10 @@
 # Predicting Subreddit Classification via Natural Language Processing
 ##### Reddit data extracted via Praw, focused on r/dating vs. r/datingoverthirty
 ##### Bob Adams - June 2023
+<div align="center">
+    <img src="./images/ModelClassification_Correlation.png">
+    <figcaption>Seven models are used to classify reddit conversations - high correlation in mis-classifications persist between models</figcaption>
+</div>
 ---
 ## Problem Statement
 The world of dating has become increasingly complicated with the proliferation of dating apps, recent in-person meeting restrictions, and various societal pressures.  In addition to services used to find 'matches', forums (including many on Reddit) have grown to facilitate discussion, support and advice.  Two popular forums are [r/dating](https://reddit.com/r/dating) and [r/datingoverthirty](https://reddit.com/r/datingoverthirty).  This project analyzes the text (post titles, selftext, and the top-upvoted comment) from 1000 recent posts from each community to predict in which subreddit new conversations are most likely to take place.  Models will be optimized to maximize accuracy - posting in the wrong subreddit carries little risk, but posting in the correct one may help bring the right answer.
