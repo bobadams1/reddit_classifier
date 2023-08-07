@@ -1,8 +1,6 @@
 # Predicting Subreddit Classification via Natural Language Processing
-Reddit data extracted via Praw, focused on r/dating vs. r/datingoverthirty
-
-Robert Adams for General Assembly - Data Science Immersive - Summer 2023
-
+##### Reddit data extracted via Praw, focused on r/dating vs. r/datingoverthirty
+##### Bob Adams - June 2023
 ---
 ## Problem Statement
 The world of dating has become increasingly complicated with the proliferation of dating apps, recent in-person meeting restrictions, and various societal pressures.  In addition to services used to find 'matches', forums (including many on Reddit) have grown to facilitate discussion, support and advice.  Two popular forums are [r/dating](https://reddit.com/r/dating) and [r/datingoverthirty](https://reddit.com/r/datingoverthirty).  This project analyzes the text (post titles, selftext, and the top-upvoted comment) from 1000 recent posts from each community to predict in which subreddit new conversations are most likely to take place.  Models will be optimized to maximize accuracy - posting in the wrong subreddit carries little risk, but posting in the correct one may help bring the right answer.
@@ -384,7 +382,7 @@ Not Applicable
 
 ![Model_7_VotingClassifier_Confusion_Matrix](./images/Model_7_VotingClassifier_Confusion_Matrix.png)
 
-#### Ensembling: Poor Results
+#### Ensembling: Reduced Results Investigation
 Ensembling models, especially those which are overfit, generally produces an output with reduced bias (better performance against test data).  In this case, the ensembled model (Voting Classifier) performed worse than our best model (82.15% vs. 84.5%).  Below is a brief exploration on why this occurred.
 
 ##### Misclassification Correlation
@@ -401,7 +399,7 @@ Here a simple histogram counts the number of models which misclassified each obs
 ##### Model Misclassifications vs. Length
 I found during EDA that post lengths differ between r/dating and r/datingoverthirty.  Below is a plot of the same histogram categories (number of models misclassifying a post) with a distribution of conversation word count (including title, selftext, and top commment).
 
-> As the word count of the document increases, more models are more likely to misclassify the document as r/datingoverthirty.  In the reverse case, as the word count decreases, more models are likely to misclassify a post as having been posted in r/dating.  It is possible
+> As the word count of the document increases, more models are more likely to misclassify the document as r/datingoverthirty.  In the reverse case, as the word count decreases, more models are likely to misclassify a post as having been posted in r/dating.  Here, the parallel uses of these two communities may yield a limit to predictive capability, partially based on post length.
 
 ![PostMisclassifications_vs_Word_Count](./images/PostMisclassifications_vs_Word_Count.png)
 

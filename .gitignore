@@ -6,3 +6,7 @@
 
 # Ignore API Keys
 credentials.py
+
+code/__pycache__/
+.python_history
+
