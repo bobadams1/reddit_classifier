@@ -9,4 +9,6 @@ credentials.py
 
 code/__pycache__/
 .python_history
-
+.gitignore
+.gitconfig
+__pycache__/
